@@ -8,8 +8,11 @@ SECRET_KEY = 'django-insecure-5j_%k8(gbaha+-)h&&ow2n*pv=quwnm_xts7z(1rsv+tx$19@!
 DEBUG = True
 
 
-
-ALLOWED_HOSTS = ['blog-coc.onrender.com']
+ALLOWED_HOSTS = [
+    ".onrender.com",
+    "localhost",
+    "127.0.0.1",
+]
 
 INSTALLED_APPS = [
     'django.contrib.admin',
