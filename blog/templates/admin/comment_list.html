@@ -1,0 +1,101 @@
+{% extends "admin/admin_base.html" %}
+{% load static %}
+{% block title %}Manage Comments{% endblock %}
+{% block page_title %}Manage Comments{% endblock %}
+
+{% block content %}
+<div class="container-fluid px-4">
+    <div class="admin-table-card">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <h5><i class="bi bi-chat-dots me-2"></i>All Comments</h5>
+        </div>
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>Author</th>
+                            <th>Post</th>
+                            <th>Message</th>
+                            <th>Status</th>
+                            <th>Date</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for comment in comments %}
+                        <tr>
+                            <td>
+                                <div class="comment-author-cell">
+                                    <i class="bi bi-person-circle"></i>
+                                    <div>
+                                        <strong>{{ comment.name }}</strong>
+                                        <small class="d-block text-muted">{{ comment.email }}</small>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>{{ comment.post.title|truncatechars:30 }}</td>
+                            <td>{{ comment.message|truncatechars:60 }}</td>
+                            <td>
+                                {% if comment.is_approved %}
+                                <span class="status-badge published">Approved</span>
+                                {% else %}
+                                <span class="status-badge draft">Pending</span>
+                                {% endif %}
+                            </td>
+                            <td>{{ comment.created_at|date:"M d, Y" }}</td>
+                            <td>
+                                <div class="action-btns">
+                                    {% if not comment.is_approved %}
+                                    <a href="{% url 'comment_approve' comment.pk %}" class="btn btn-sm btn-approve" title="Approve">
+                                        <i class="bi bi-check-lg"></i>
+                                    </a>
+                                    <a href="{% url 'comment_reject' comment.pk %}" class="btn btn-sm btn-reject" title="Reject">
+                                        <i class="bi bi-x-lg"></i>
+                                    </a>
+                                    {% endif %}
+                                    <button type="button" class="btn btn-sm btn-delete" title="Delete"
+                                        data-bs-toggle="modal" data-bs-target="#deleteModal{{ comment.pk }}">
+                                        <i class="bi bi-trash"></i>
+                                    </button>
+                                </div>
+
+                                <div class="modal fade" id="deleteModal{{ comment.pk }}" tabindex="-1">
+                                    <div class="modal-dialog modal-dialog-centered">
+                                        <div class="modal-content">
+                                            <div class="modal-header border-0">
+                                                <h5 class="modal-title">Confirm Delete</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                            </div>
+                                            <div class="modal-body text-center py-4">
+                                                <i class="bi bi-exclamation-triangle text-danger" style="font-size: 3rem;"></i>
+                                                <p class="mt-3 mb-0">Delete comment by <strong>"{{ comment.name }}"</strong>?</p>
+                                                <p class="text-muted small mt-2">This action cannot be undone.</p>
+                                            </div>
+                                            <div class="modal-footer border-0 justify-content-center">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                                <form method="POST" action="{% url 'comment_delete' comment.pk %}">
+                                                    {% csrf_token %}
+                                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="6" class="text-center py-5">
+                                <i class="bi bi-chat-dots" style="font-size: 3rem; color: #ccc;"></i>
+                                <p class="mt-3 mb-0">No comments yet</p>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

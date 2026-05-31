@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}About Us{% endblock %}
+{% block content %}
+
+<section class="page-header">
+    <div class="container">
+        <span class="section-badge">About</span>
+        <h1 class="page-title">About CoC Stantanpuram</h1>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+                <li class="breadcrumb-item active">About</li>
+            </ol>
+        </nav>
+    </div>
+</section>
+
+<section class="about-section">
+    <div class="container">
+        <div class="row g-5 align-items-center">
+            <div class="col-lg-6">
+                <div class="about-image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1515378960530-7c0da6231fb1?w=600&q=80" alt="About CoC Stantanpuram" class="about-image">
+                    <div class="about-experience">
+                        <span class="experience-number">0</span>
+                        <span class="experience-text">Articles Published</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <span class="section-badge">Our Story</span>
+                <h2 class="about-title">We Share Ideas That <span class="gradient-text">Matter</span></h2>
+                <p class="about-text">CoC Stantanpuram is a modern blogging platform dedicated to sharing knowledge, insights, and stories that inspire. Our mission is to create a space where writers and readers can connect through meaningful content.</p>
+                <p class="about-text">Founded in 2024, we've grown from a small blog into a thriving community of writers, thinkers, and creators from around the world.</p>
+
+                <div class="row g-4 mt-4">
+                    <div class="col-sm-4">
+                    <div class="about-stat">
+                        <i class="bi bi-journal-text"></i>
+                        <h4>0</h4>
+                        <p>Articles</p>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="about-stat">
+                        <i class="bi bi-people"></i>
+                        <h4>3</h4>
+                        <p>Authors</p>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="about-stat">
+                        <i class="bi bi-chat-dots"></i>
+                        <h4>0</h4>
+                        <p>Comments</p>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="team-section">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-badge">Team</span>
+            <h2 class="section-title">Meet Our Team</h2>
+            <p class="section-desc">The passionate people behind CoC Stantanpuram</p>
+        </div>
+        <div class="row g-4">
+            <div class="col-lg-4 col-md-6">
+                <div class="team-card">
+                    <div class="team-avatar">
+                        <i class="bi bi-person-circle"></i>
+                    </div>
+                    <h5>Rayappa Raju</h5>
+                    <span class="team-role">Team Member</span>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="team-card">
+                    <div class="team-avatar">
+                        <i class="bi bi-person-circle"></i>
+                    </div>
+                    <h5>Rajavardhan</h5>
+                    <span class="team-role">Team Member</span>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="team-card">
+                    <div class="team-avatar">
+                        <i class="bi bi-person-circle"></i>
+                    </div>
+                    <h5>Peter</h5>
+                    <span class="team-role">Team Member</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

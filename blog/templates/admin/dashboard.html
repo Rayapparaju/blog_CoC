@@ -1,0 +1,157 @@
+{% extends "admin/admin_base.html" %}
+{% load static %}
+{% block title %}Dashboard{% endblock %}
+{% block page_title %}Dashboard Overview{% endblock %}
+
+{% block content %}
+<div class="container-fluid px-4">
+    <div class="row g-4 mb-4">
+        <div class="col-xl-3 col-md-6">
+            <div class="dashboard-card total-posts">
+                <div class="card-icon">
+                    <i class="bi bi-file-text"></i>
+                </div>
+                <div class="card-info">
+                    <h3>{{ total_posts }}</h3>
+                    <p>Total Posts</p>
+                </div>
+                <div class="card-change">
+                    <span class="badge bg-light text-dark">{{ total_published }} Published</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-md-6">
+            <div class="dashboard-card published-posts">
+                <div class="card-icon">
+                    <i class="bi bi-check-circle"></i>
+                </div>
+                <div class="card-info">
+                    <h3>{{ total_published }}</h3>
+                    <p>Published</p>
+                </div>
+                <div class="card-change">
+                    <span class="badge bg-light text-dark">{{ total_drafts }} Drafts</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-md-6">
+            <div class="dashboard-card total-categories">
+                <div class="card-icon">
+                    <i class="bi bi-folder"></i>
+                </div>
+                <div class="card-info">
+                    <h3>{{ total_categories }}</h3>
+                    <p>Categories</p>
+                </div>
+                <div class="card-change">
+                    <span class="badge bg-light text-dark">{{ total_tags }} Tags</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-md-6">
+            <div class="dashboard-card total-comments">
+                <div class="card-icon">
+                    <i class="bi bi-chat-dots"></i>
+                </div>
+                <div class="card-info">
+                    <h3>{{ total_comments }}</h3>
+                    <p>Comments</p>
+                </div>
+                <div class="card-change">
+                    <span class="badge bg-light text-dark">{{ pending_comments }} Pending</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row g-4">
+        <div class="col-lg-7">
+            <div class="admin-table-card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5><i class="bi bi-file-text me-2"></i>Recent Posts</h5>
+                    <a href="{% url 'post_list' %}" class="btn btn-sm btn-outline-primary">View All</a>
+                </div>
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>Title</th>
+                                    <th>Status</th>
+                                    <th>Date</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for post in recent_posts %}
+                                <tr>
+                                    <td>
+                                        <div class="post-title-cell">
+                                            <span>{{ post.title|truncatechars:40 }}</span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        {% if post.status == 'published' %}
+                                        <span class="status-badge published">Published</span>
+                                        {% else %}
+                                        <span class="status-badge draft">Draft</span>
+                                        {% endif %}
+                                    </td>
+                                    <td>{{ post.created_at|date:"M d, Y" }}</td>
+                                </tr>
+                                {% empty %}
+                                <tr>
+                                    <td colspan="3" class="text-center py-4">No posts yet</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-5">
+            <div class="admin-table-card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5><i class="bi bi-chat-dots me-2"></i>Recent Comments</h5>
+                    <a href="{% url 'comment_list' %}" class="btn btn-sm btn-outline-primary">View All</a>
+                </div>
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>Comment</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for comment in recent_comments %}
+                                <tr>
+                                    <td>
+                                        <div class="comment-cell">
+                                            <strong>{{ comment.name }}</strong>
+                                            <p class="mb-0 text-muted small">{{ comment.message|truncatechars:40 }}</p>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        {% if comment.is_approved %}
+                                        <span class="status-badge published">Approved</span>
+                                        {% else %}
+                                        <span class="status-badge draft">Pending</span>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                                {% empty %}
+                                <tr>
+                                    <td colspan="2" class="text-center py-4">No comments yet</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

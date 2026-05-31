@@ -1,0 +1,54 @@
+<footer class="footer">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-lg-4">
+                <h5 class="footer-brand"><i class="bi bi-pencil-square me-2"></i>CoC Stantanpuram</h5>
+                <p class="footer-text">Discover stories, thinking, and expertise from writers on any topic that matters to you.</p>
+                <div class="social-links">
+                    <a href="#" class="social-link"><i class="bi bi-twitter-x"></i></a>
+                    <a href="#" class="social-link"><i class="bi bi-facebook"></i></a>
+                    <a href="#" class="social-link"><i class="bi bi-instagram"></i></a>
+                    <a href="#" class="social-link"><i class="bi bi-linkedin"></i></a>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-4">
+                <h6 class="footer-heading">Quick Links</h6>
+                <ul class="footer-links">
+                    <li><a href="{% url 'home' %}">Home</a></li>
+                    <li><a href="{% url 'blog_list' %}">Blog</a></li>
+                    <li><a href="{% url 'about' %}">About</a></li>
+                    <li><a href="{% url 'contact' %}">Contact</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-3 col-md-4">
+                <h6 class="footer-heading">Categories</h6>
+                <ul class="footer-links">
+                    {% for cat in categories %}
+                    <li><a href="{% url 'category_posts' cat.slug %}">{{ cat.name }}</a></li>
+                    {% empty %}
+                    <li><a href="#">No categories</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="col-lg-3 col-md-4">
+                <h6 class="footer-heading">Recent Posts</h6>
+                <ul class="footer-links">
+                    {% for post in recent_posts %}
+                    <li><a href="{% url 'blog_detail' post.slug %}">{{ post.title|truncatechars:35 }}</a></li>
+                    {% empty %}
+                    <li><a href="#">No posts yet</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        <hr class="footer-divider">
+        <div class="row">
+            <div class="col-md-6">
+                <p class="copyright">&copy; {% now "Y" %} CoC Stantanpuram. All rights reserved.</p>
+            </div>
+            <div class="col-md-6 text-md-end">
+                <p class="copyright">Made with <i class="bi bi-heart-fill text-danger"></i> by CoC Stantanpuram Team</p>
+            </div>
+        </div>
+    </div>
+</footer>

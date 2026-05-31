@@ -1,0 +1,58 @@
+<aside class="admin-sidebar">
+    <div class="sidebar-header">
+        <a href="{% url 'dashboard' %}" class="sidebar-brand">
+            <i class="bi bi-pencil-square"></i>
+            <span>CoC Stantanpuram</span>
+        </a>
+    </div>
+    <nav class="sidebar-nav">
+        <ul class="nav-list">
+            <li class="nav-item">
+                <a href="{% url 'dashboard' %}" class="nav-link {% if request.resolver_match.url_name == 'dashboard' %}active{% endif %}">
+                    <i class="bi bi-speedometer2"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+            <li class="nav-divider">Content</li>
+            <li class="nav-item">
+                <a href="{% url 'post_list' %}" class="nav-link {% if 'posts' in request.path %}active{% endif %}">
+                    <i class="bi bi-file-text"></i>
+                    <span>Posts</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="{% url 'category_list' %}" class="nav-link {% if 'categorie' in request.path %}active{% endif %}">
+                    <i class="bi bi-folder"></i>
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="{% url 'tag_list' %}" class="nav-link {% if 'tag' in request.path %}active{% endif %}">
+                    <i class="bi bi-tags"></i>
+                    <span>Tags</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="{% url 'comment_list' %}" class="nav-link {% if 'comment' in request.path %}active{% endif %}">
+                    <i class="bi bi-chat-dots"></i>
+                    <span>Comments</span>
+                    {% with pending=request.user|default:0 %}
+                    {% endwith %}
+                </a>
+            </li>
+            <li class="nav-divider">Settings</li>
+            <li class="nav-item">
+                <a href="{% url 'profile' %}" class="nav-link {% if 'profile' in request.path %}active{% endif %}">
+                    <i class="bi bi-person-circle"></i>
+                    <span>Profile</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="{% url 'admin_logout' %}" class="nav-link">
+                    <i class="bi bi-box-arrow-left"></i>
+                    <span>Logout</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</aside>

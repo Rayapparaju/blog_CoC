@@ -1,0 +1,28 @@
+{% extends "admin/admin_base.html" %}
+{% load static %}
+{% block title %}{% if edit %}Edit Tag{% else %}Add Tag{% endif %}{% endblock %}
+{% block page_title %}{% if edit %}Edit Tag{% else %}Add Tag{% endif %}{% endblock %}
+
+{% block content %}
+<div class="container-fluid px-4">
+    <div class="row justify-content-center">
+        <div class="col-lg-6">
+            <div class="admin-form-card">
+                <div class="card-body">
+                    <form method="POST">
+                        {% csrf_token %}
+                        <div class="mb-4">
+                            <label class="form-label">Tag Name *</label>
+                            {{ form.name }}
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-lg px-5">
+                            <i class="bi bi-check-lg me-2"></i>{% if edit %}Update{% else %}Create{% endif %}
+                        </button>
+                        <a href="{% url 'tag_list' %}" class="btn btn-secondary btn-lg px-4 ms-2">Cancel</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

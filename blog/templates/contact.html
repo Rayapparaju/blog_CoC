@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Contact Us{% endblock %}
+{% block content %}
+
+<section class="page-header">
+    <div class="container">
+        <span class="section-badge">Contact</span>
+        <h1 class="page-title">Get In Touch</h1>
+        <p class="page-subtitle">Have a question or want to collaborate? We'd love to hear from you.</p>
+    </div>
+</section>
+
+<section class="contact-section">
+    <div class="container">
+        <div class="row g-5">
+            <div class="col-lg-7">
+                <div class="contact-form-wrapper">
+                    <h3 class="mb-4">Send Us a Message</h3>
+                    <form method="POST" class="contact-form">
+                        {% csrf_token %}
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label class="form-label">Your Name *</label>
+                                {{ form.name }}
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Your Email *</label>
+                                {{ form.email }}
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label">Subject *</label>
+                                {{ form.subject }}
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label">Message *</label>
+                                {{ form.message }}
+                            </div>
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-primary btn-lg px-5">Send Message <i class="bi bi-send ms-2"></i></button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-lg-5">
+                <div class="contact-info">
+                    <h3 class="mb-4">Contact Information</h3>
+                    <div class="contact-info-item">
+                        <i class="bi bi-geo-alt"></i>
+                        <div>
+                            <h6>Address</h6>
+                            <p>Church of Christ, Stantanpuram, Kurnool</p>
+                        </div>
+                    </div>
+                    <div class="contact-info-item">
+                        <i class="bi bi-envelope"></i>
+                        <div>
+                            <h6>Email</h6>
+                            <p>churchesofchrist.stp@gmail.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-info-item">
+                        <i class="bi bi-telephone"></i>
+                        <div>
+                            <h6>Phone</h6>
+                            <p>+91 9052056881</p>
+                        </div>
+                    </div>
+                    <div class="contact-info-item">
+                        <i class="bi bi-clock"></i>
+                        <div>
+                            <h6>Working Hours</h6>
+                            <p>Mon - Fri: 10:00 AM - 5:00 PM</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
