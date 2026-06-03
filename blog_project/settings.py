@@ -9,6 +9,8 @@ DEBUG = True
 
 
 ALLOWED_HOSTS = [
+    'rachapudi-rrr.xyz',
+    'www.rachapudi-rrr.xyz',
     ".onrender.com",
     "localhost",
     "127.0.0.1",
@@ -90,7 +92,7 @@ STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 STATICFILES_DIRS = [
-    BASE_DIR / 'static',
+    BASE_DIR / 'blog' / 'static',
 ]
 
 
