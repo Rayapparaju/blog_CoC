@@ -9,7 +9,7 @@ DEBUG = True
 
 
 ALLOWED_HOSTS = [
-      'rachapudi-rrr.xyz',
+    'rachapudi-rrr.xyz',
     'www.rachapudi-rrr.xyz',
     '.onrender.com',
     'localhost',
